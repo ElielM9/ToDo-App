@@ -20,7 +20,7 @@ function eventListeners() {
 // Funciones
 
 function loadLocalStorage() {
-  tasks = JSON.parse(localStorage.getItem(`tasks`) || []);
+  tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
   createHTML();
 }
@@ -123,7 +123,7 @@ function createHTML() {
       };
 
       if (task.completed) {
-        taskHTML.classList.add('task__completed'); // Agregar clase para tareas completadas
+        taskHTML.classList.add("task__completed"); // Agregar clase para tareas completadas
       }
     });
   }
@@ -138,11 +138,10 @@ function syncStorage() {
 
 function completeTask(id) {
   tasks = tasks.filter((task) => {
-
     if (task.id === id) {
       task.completed = !task.completed;
     }
-    
+
     return task;
   });
 
