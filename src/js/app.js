@@ -140,9 +140,11 @@ function syncStorage() {
 
 function completeTask(id) {
   tasks = tasks.filter((task) => {
+
     if (task.id === id) {
       task.completed = !task.completed;
     }
+    
     return task;
   });
 
