@@ -61,12 +61,12 @@ h2 {
 }
 
 p {
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 @media (min-width: 768px) {
   p {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 }
 
@@ -76,6 +76,7 @@ a {
 
 ul {
   list-style: none;
+  padding: 0;
 }
 
 img {
@@ -145,7 +146,7 @@ img {
 @media (hover: hover) {
   .form__btn {
     cursor: pointer;
-    transition: .2s ease-in-out;
+    transition: 0.2s ease-in-out;
   }
 
   .form__btn:hover {
@@ -157,7 +158,68 @@ img {
   fill: var(--white);
 }
 
-.task-title{
+.error {
+  margin: 0 auto;
+  padding: 1rem;
+  font-weight: 900;
+  text-align: center;
+  color: white;
+  background-color: red;
+  border-radius: 1rem;
+}
+
+.tasks__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tasks__earrings {
   font-weight: 900;
   color: var(--yellow);
+}
+
+.tasks__date {
+  font-weight: 900;
+  color: var(--purple);
+}
+
+.task {
+  display: grid;
+  grid-template-columns: 0.5fr 4fr 0.5fr;
+  justify-items: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: var(--gray);
+  border: none;
+  border-radius: 1rem;
+}
+
+@media (min-width: 768px) {
+  .task {
+    padding: 1.5rem;
+  }
+}
+
+.task__completed,
+.task__completed .task__text {
+  background-color: var(--purple);
+  text-decoration: line-through;
+}
+
+.task__check {
+  width: 2.5rem;
+  fill: var(--white);
+  border: 0.25rem solid var(--yellow);
+  border-radius: 50%;
+}
+
+.task__text {
+  font-weight: 300;
+  color: var(--white);
+}
+
+.task__trash {
+  width: 2.5rem;
+  fill: red;
 }
