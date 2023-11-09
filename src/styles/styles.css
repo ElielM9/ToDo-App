@@ -159,7 +159,7 @@ img {
 }
 
 .error {
-  margin: 0 auto;
+  margin: 1rem auto;
   padding: 1rem;
   font-weight: 900;
   text-align: center;
@@ -189,6 +189,7 @@ img {
   justify-items: center;
   align-items: center;
   gap: 0.5rem;
+  margin: 1rem 0;
   padding: 1rem;
   background-color: var(--gray);
   border: none;
