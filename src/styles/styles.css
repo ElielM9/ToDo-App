@@ -141,20 +141,21 @@ img {
   padding: 1rem;
   border: none;
   border-radius: 1rem;
+  transition: 0.2s ease-in-out;
+}
+
+.form__btn:active {
+  background-color: var(--purpleBlack);
 }
 
 @media (hover: hover) {
-  .form__btn {
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-  }
-
   .form__btn:hover {
+    cursor: pointer;
     background-color: var(--purpleBlack);
   }
 }
 
-.form__btn--icon {
+.form__btn-icon {
   fill: var(--white);
 }
 
@@ -208,19 +209,39 @@ img {
   text-decoration: line-through;
 }
 
-.task__check {
+.task__btn {
+  background-color: transparent;
+  border: none;
+}
+
+@media (hover: hover) {
+  .task__btn:hover {
+    cursor: pointer;
+  }
+}
+
+.task__btn-icon {
   width: 2.5rem;
   fill: var(--white);
+  transition: 0.2s ease-in-out;
+}
+
+.task__btn-icon--check {
   border: 0.25rem solid var(--yellow);
   border-radius: 50%;
+}
+
+.task__btn-icon--trash:active {
+  fill: red;
+}
+
+@media (hover: hover) {
+  .task__btn-icon--trash:hover {
+    fill: red;
+  }
 }
 
 .task__text {
   font-weight: 300;
   color: var(--white);
-}
-
-.task__trash {
-  width: 2.5rem;
-  fill: red;
 }
