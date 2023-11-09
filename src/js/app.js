@@ -15,14 +15,12 @@ function startApp() {
 function eventListeners() {
   // Cuando el usuario agrega una tarea
   form.addEventListener(`submit`, addTask);
-
-  // Eliminar tarea
 }
 
 // Funciones
 
 function loadLocalStorage() {
-  tasks = JSON.parse(localStorage.getItem(`tasks` || []));
+  tasks = JSON.parse(localStorage.getItem(`tasks`) || []);
 
   createHTML();
 }
