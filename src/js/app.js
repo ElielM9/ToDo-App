@@ -107,19 +107,7 @@ function createHTML() {
       taskHTML.innerHTML = taskContent;
       taskHTML.dataset.taskId = task.id;
 
-      const btnTrash = taskHTML.querySelector(`.task__btn--trash`);
-      const btnCheck = taskHTML.querySelector(`.task__btn--check`);
-
-      // Eliminar tarea
-      btnTrash.onclick = () => {
-        deleteTask(task.id);
-      };
-
-      // Marcar como completada
-      btnCheck.onclick = () => {
-        completeTask(task.id);
-      };
-
+      setupTaskEvents(taskHTML);
       if (task.completed) {
         // Agregar clase para tareas completada
         taskHTML.classList.add(`task--completed`);
@@ -138,11 +126,20 @@ function syncStorage() {
   localStorage.setItem(`tasks`, JSON.stringify(tasks));
 }
 
-// Eliminar una tarea
-function deleteTask(id) {
-  tasks = tasks.filter((task) => task.id !== id);
+function setupTaskEvents(taskHTML) {
+  const btnCheck = taskHTML.querySelector(`.task__btn--check`);
+  const btnTrash = taskHTML.querySelector(`.task__btn--trash`);
+  const taskId = parseInt(taskHTML.dataset.taskId);
 
-  createHTML();
+  // Marcar como completada
+  btnCheck.addEventListener(`click`, () => {
+    completeTask(taskId);
+  });
+
+  // Eliminar tarea
+  btnTrash.addEventListener(`click`, () => {
+    deleteTask(taskId);
+  });
 }
 
 // Marcar una tarea como completada
@@ -158,19 +155,32 @@ function completeTask(id) {
   createHTML();
 }
 
+// Eliminar una tarea
+function deleteTask(id) {
+  tasks = tasks.filter((task) => task.id !== id);
+
+  createHTML();
+}
+
 // Limpiar el html
 function cleanHTML() {
+
+  // Mientras exista un primer hijo en 'tasksList', elimina el primer hijo de taskList
   while (tasksList.firstChild) {
     tasksList.removeChild(tasksList.firstChild);
   }
 }
 
 function actualDate() {
+  // Selecciona el elemento HTML con el id 'date'
   const tasksDate = document.querySelector(`#date`);
+  // Crea un nuevo objeto Date que representa la fecha y hora actuales
   const actualDate = new Date();
+  // Extrae el día, mes y año del objeto actualDate.
   const date = `${actualDate.getDate()}/${
     actualDate.getMonth() + 1
   }/${actualDate.getFullYear()}`;
 
+  // Coloca el contenido del elemento seleccionado en la cadena de fecha formateada
   tasksDate.textContent = date;
 }
