@@ -203,8 +203,8 @@ img {
   }
 }
 
-.task__completed,
-.task__completed .task__text {
+.task--completed,
+.task--completed .task__text {
   background-color: var(--purple);
   text-decoration: line-through;
 }

@@ -105,9 +105,7 @@ function createHTML() {
       const taskHTML = document.createElement(`li`);
       taskHTML.classList.add(`task`);
       taskHTML.innerHTML = taskContent;
-
-      // Agregar al HTML
-      tasksList.appendChild(taskHTML);
+      taskHTML.dataset.taskId = task.id;
 
       const btnTrash = taskHTML.querySelector(`.task__btn--trash`);
       const btnCheck = taskHTML.querySelector(`.task__btn--check`);
@@ -123,8 +121,12 @@ function createHTML() {
       };
 
       if (task.completed) {
-        taskHTML.classList.add("task__completed"); // Agregar clase para tareas completadas
+        // Agregar clase para tareas completada
+        taskHTML.classList.add(`task--completed`);
       }
+
+      // Agregar al HTML
+      tasksList.appendChild(taskHTML);
     });
   }
 
@@ -136,6 +138,14 @@ function syncStorage() {
   localStorage.setItem(`tasks`, JSON.stringify(tasks));
 }
 
+// Eliminar una tarea
+function deleteTask(id) {
+  tasks = tasks.filter((task) => task.id !== id);
+
+  createHTML();
+}
+
+// Marcar una tarea como completada
 function completeTask(id) {
   tasks = tasks.filter((task) => {
     if (task.id === id) {
@@ -144,13 +154,6 @@ function completeTask(id) {
 
     return task;
   });
-
-  createHTML();
-}
-
-// Eliminar una tarea
-function deleteTask(id) {
-  tasks = tasks.filter((task) => task.id !== id);
 
   createHTML();
 }
@@ -165,7 +168,9 @@ function cleanHTML() {
 function actualDate() {
   const tasksDate = document.querySelector(`#date`);
   const actualDate = new Date();
-  const date = `${actualDate.getDay()}/${actualDate.getMonth()}/${actualDate.getFullYear()}`;
+  const date = `${actualDate.getDate()}/${
+    actualDate.getMonth() + 1
+  }/${actualDate.getFullYear()}`;
 
   tasksDate.textContent = date;
 }
